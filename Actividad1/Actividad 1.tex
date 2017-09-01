@@ -1,0 +1,124 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Actividad 1}
+\author{Edwin Herrera \\
+Departamento de Fisica \\
+Universidad de Sonora}
+\date{31 de Agosto de 2017}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+% Son comentarios
+\section{Introducción}
+Se pide elaborar una bitácora de los comandos que vas a ir probando en los puntos del 1 al 8 del Tutorial de Linux, con la intención de elaborar un pequeño manual con los primeros comandos de Linux para principiantes, diseñado y sintetizado por ti y para ti. La estructura será: comando, descripción breve y un ejemplo de entrada y salida.
+
+\subsection{Comandos de bash}
+% Pegamos lo copiado que escribimos en Emacs
+
+
+\subsubsection{Command Line}
+\begin{itemize}
+\item edwin@bash \\
+Es la terminal en la que estamos ubicados.
+
+\end{itemize}
+\subsubsection{Basic Navigation}
+\begin{itemize}
+\item pwd \\
+Te dice en que directorio estas trabajando.
+
+\item ls \\
+Te dice el contenido del directorio en el que estas trabajando.
+
+\item ls -l \\
+Te da un listado de todos los archivos que estan en la carpeta o directorio que estas ubicado en lista larga.
+\end{itemize}
+\subsubsection{More About Files}
+\begin{itemize}
+\item file \\
+Es para saber que tipo de documentos tienes en ese directorio.
+
+\item ls -a \\
+Es para enlistar el contenido del directorio incluyendo los archivos escondidos.
+\end{itemize}
+\subsubsection{Manual Pages}
+\begin{itemize}
+\item man <search term> \\
+Ver el manual de como usar un comando.
+
+\item man -k <search term> \\
+Te da un listado de todos los manuales que contienen el termino buscado.
+\end{itemize}
+\subsubsection{File Manipulation}
+\begin{itemize}
+
+\item mkdir \\
+Crean un directorio nuevo.
+
+\item rmdir \\
+Borrar directorio.
+
+\item touch \\
+Crear un archivo en blanco.
+
+\item cp \\
+Copiar un archivo o un directorio.
+
+\item mv \\
+Es para mover un archivo o un directorio.
+
+\item rm \\
+Es para borrar un archivo.
+\end{itemize}
+\subsubsection{Vi Text Editor}
+\begin{itemize}
+\item vi \\
+Es para editar un archivo.
+
+\item cat \\
+Es para ver un archivo.
+\end{itemize}
+\subsubsection{Wildcards}
+\begin{itemize}
+
+\item * \\
+Representa cero o mas caracteres.
+
+\item ? \\
+Respresenta un solo caracter.
+
+\item $[ $ $ ]$ \\
+Representa un rango de caracteres.
+
+\item $\hat{ }$ \\
+Es para especificar cuales caracteres no quieres que esten en el resultado.
+\end{itemize}
+\subsubsection{Permissions}
+\begin{itemize}
+
+\item chmod \\
+Cambiar los permisos de un archivo o un directorio.
+
+\item ls -ld \\
+Ver los permisos 
+
+\end{itemize}
+\end{document}
+
+
+

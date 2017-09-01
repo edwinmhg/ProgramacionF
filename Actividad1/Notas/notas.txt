@@ -1,0 +1,78 @@
+1.-Command Line
+	   edwin@bash
+	   Es la terminal en la que estamos ubicados.
+	      
+2.-Basic Navigation
+	 Pwd
+	 Te dice en que directorio estas trabajando.
+	    	 
+	 ls
+	 Te dice el contenido del directorio en el que estas trabajando.
+
+	 ls -l
+	 Te da un listado de todos los archivos que estan en la carpeta o
+	 directorio que estas ubicado en lista larga.
+
+
+3.-More About Files
+	file
+	Es para saber que tipo de documentos tienes en ese directorio.
+
+	ls -a
+	Es para enlistar el contenido del directorio incluyendo los archivos
+	escondidos.
+
+4.-Manual Pages
+	  man <search term>	
+	  Ver el manual de como usar un comando.
+
+	  man -k <search term>
+	  Te da un listado de todos los manuales que contienen el termino
+	  buscado.
+
+5.-File Manipulation
+	mkdir
+	Crean un directorio nuevo.
+
+	rmdir
+	Borrar directorio.
+
+	touch
+	Crear un archivo en blanco.
+
+	cp
+	Copiar un archivo o un directorio.
+
+	mv
+	Es para mover un archivo o un directorio.
+
+	rm
+	Es para borrar un archivo.
+
+6.-Vi Text Editor.
+      vi
+      Es para editar un archivo.
+
+      cat
+      Es para ver un archivo.
+
+7.-Wildcards
+	*
+	Representa cero o mas caracteres.
+
+	?
+	Respresenta un solo caracter.
+
+	[]
+	Representa un rango de caracteres.
+
+	^
+	Es para especificar cuales caracteres no quieres que esten en el
+	resultado.
+8.-Permissions
+
+	chmod
+	Cambiar los permisos de un archivo o un directorio.
+
+	ls -ld
+	Ver los permisos 
