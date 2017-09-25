@@ -1,0 +1,41 @@
+!
+!! proyectil.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp85.example.com>
+!! 
+!! Started on  Thu Sep 14 17:37:08 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <14-sep-2017 17:56:33 edwin>
+!
+
+ program projectile
+  implicit none
+
+  ! definimos constantes
+  real, parameter :: g = 9.8
+  real, parameter :: pi = 3.1415927
+
+  ! definimos las variables
+  real :: a, t, u, x, y
+  real :: theta, v, vx, vy
+
+  ! Leer valores para el ángulo a, el tiempo t, y la velocidad inicial u desde la terminal
+  write(*,*) 'Dame el ángulo, el tiempo y la rapidez inicial'
+  read(*,*) a, t, u
+
+  ! convirtiendo ángulo a radianes
+  a = a * pi / 180.0
+  
+  ! las ecuaciones de la posición en x y y
+  x = u * cos(a) * t
+  y = u * sin(a) * t - 0.5 * g * t * t
+
+ 
+ 
+ ! escribiendo el resultado en la pantalla
+  write(*,*) 'x: ',x,'  y: ',y
+  write(*,*) 'v: ',v,'  theta: ',theta
+
+ 
+
+end program projectile

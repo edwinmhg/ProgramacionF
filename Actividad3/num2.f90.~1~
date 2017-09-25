@@ -1,0 +1,105 @@
+!
+!! num2.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp84.example.com>
+!! 
+!! Started on  Mon Sep 18 11:46:16 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <18-sep-2017 11:55:37 edwin>
+!
+
+program outputdata
+  implicit none
+  real, dimension(100) :: x, y
+  real :: a, u, n
+  integer :: i
+  write(*,*) 'Dame el ángulo y la velocidad inicial'
+  read(*,*) a, u
+  ! setup x and y with some data, y angulo de 15 grados
+  do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(15)
+     y(i) = sin(15(i)) * (1-cos(15(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica15.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(30)
+     y(i) = sin(30(i)) * (1-cos(30(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica30.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(45)
+     y(i) = sin(45(i)) * (1-cos(45(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica45.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  
+ do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(60)
+     y(i) = sin(60(i)) * (1-cos(60(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica60.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+  
+  
+ do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(75)
+     y(i) = sin(75(i)) * (1-cos(75(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica75.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  
+  do i=1,100
+     n=i * 0.1
+     x(i) = n * cos(90)
+     y(i) = sin(90(i)) * (1-cos(90(i)/3.0))
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica90.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+  
+end program outputdata

@@ -1,0 +1,103 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{graphicx}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  
+\fi
+
+% used in maketitle
+\title{Actividad 2}
+\author{Edwin Herrera \\
+Departamento de Fisica \\
+Universidad de Sonora}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\clearpage
+
+\section{Movimiento de un proyectil}
+
+El movimiento de un proyectil es una forma de movimiento en la cual el objeto o particula se tira cerca de la superficie de la tierra, y se mueve a lo largo de una curva en interaccion con la gravedad. La unica fuerza significativa que actua sobre el objeto es la gravedad, que "jala hacia abajo" aplicando una aceleración. En consecuencia de la inercia del objeto, no se necesitan fuerzas externas horizontales para mantener la velocidad horizontal del objeto.
+
+
+\subsection{Posición}
+
+Con estas formulas se calcuaron las posiciones de la particula respecto al tiempo con las especificaciones de la actividad 3.
+
+$$x = v_{0} t \cos \theta$$
+$$y = v_{0} t \sin \theta - \frac{1}{2} g t^2$$
+
+Los resultados fueron los siguientes.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Graficas.png}
+  \caption{Grafica de posiciones}
+  \label{fig:Grafica}
+\end{figure}
+
+
+
+Los codigos de fortran son
+\begin{verbatim}
+program outputdata
+  implicit none
+  !Definimos las variables reales
+   real :: a, fi, fj, t
+  !Definimos las variables reales con parametros
+   real, parameter :: deltat = .01
+   real, parameter :: u = 10.0, g = 10, pi = 3.1415927
+  !Definimos las variables 
+   real, dimension(1000) :: x, y
+  !Definimos las variables enteras
+   integer :: i, j
+   integer, parameter :: maxangle = 90, ntimes = 1000
+   
+    open(1, file='Graficas.dat', status='unknown')
+ 
+ do j=15, maxangle, 15
+    fj = float(j)
+    
+     do i=1, ntimes
+       fi = float(i)
+       t = fi * deltat
+       
+       a = fj * pi / 180.0
+       
+     x(i) = u * t * cos(a)
+     y(i) = u * t * sin(a) - 0.5 * g * t * t
+     if (y(i).LT.0) exit
+
+       
+       write(1,*) x(i), y(i)
+       
+    
+     end do
+       write(1,*) ' '
+ end do
+     
+    close(1)
+    
+ 
+
+  end program outputdata
+
+\end{verbatim}
+Y el codigo de gnuplot es:
+\begin{verbatim}
+plot "Graficas.dat" with dots
+\end{verbatim}
+
+
+
+\end{document}

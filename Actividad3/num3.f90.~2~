@@ -1,0 +1,30 @@
+!
+!! num3.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp21.example.com>
+!! 
+!! Started on  Thu Sep 21 17:46:05 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <21-sep-2017 17:48:05 edwin>
+!
+
+program outputdata
+  implicit none
+  real, dimension(100) :: x, y, i
+  real :: a
+  integer :: i
+ real, parameter :: u = 10.0
+ real, parameter :: g = 9.8
+ real, parameter :: pi = 3.1415927
+ real, parameter :: deltat = 0.1
+ real, parameter :: fi = float(i)
+  ! setup x and y with some data
+ do i=1, ntimes
+ t = t0 + fi * deltat  
+a = 15 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+     if(y.LT.0)
+  end do
+
+  end program

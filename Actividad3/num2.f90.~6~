@@ -1,0 +1,108 @@
+!
+!! num2.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp84.example.com>
+!! 
+!! Started on  Mon Sep 18 11:46:16 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <18-sep-2017 12:16:59 edwin>
+!
+
+program outputdata
+  implicit none
+  real, dimension(100) :: x, y
+  real :: a
+  integer :: i
+ real, parameter :: u = 10.0
+ real, parameter :: g = 9.8
+ real, parameter :: pi = 3.1415927
+  ! setup x and y with some data
+  do i=1,100
+a = 15 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica15.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  do i=1,100
+a = 30 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica30.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  do i=1,100
+a = 45 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica45.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  
+ do i=1,100
+a = 60 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica60.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+  
+  
+ do i=1,100
+ a = 75 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i
+
+  end do
+
+  ! output data to a file
+  open(1, file='Grafica75.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+
+
+  
+  do i=1,100
+a = 90 * pi / 180.0
+     x(i) = u * i * cos(a)
+     y(i) = u * i * sin(a) - 0.5 * g * i * i  end do
+
+  ! output data to a file
+  open(1, file='Grafica90.dat', status='unknown')
+  do i=1,100
+     write(1,*) x(i), y(i)
+  end do
+  close(1)
+  
+end program outputdata
