@@ -1,0 +1,62 @@
+!
+!! Proyectil.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp106.example.com>
+!! 
+!! Started on  Fri Oct 20 10:41:09 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <20-oct-2017 11:25:45 edwin>
+!
+
+program outputdata
+  implicit none
+  !Definimos las variables reales
+   real :: vt, c, A, vter
+  !Definimos las variables reales con parametros
+   real, parameter :: deltat = .01, m = 0.250, r = 0.05, cd = 0.47
+   real, parameter :: u = 2 , g = 9.81, pi = 3.1415927, Ro = 1.225
+  !Definimos las variables 
+   real, dimension(1000) :: x, y
+  !Definimos las variables enteras
+   integer :: i, j
+   integer, parameter :: maxvel = 10
+   
+!Calculamos el Area del circulo.
+   A = pi * r * r
+!Calculamos la velocidad terminal.
+  vt = ((2 * m * g) / (Ro * A * cd))
+  vter = SQRT(vt)
+!Calculamos el coeficiente de fricción.
+ c = (m * g) / (vt)
+
+
+   open(1, file='Graficas.dat', status='unknown')
+   
+ do j=2, maxvel, 2
+    fj = float(j)
+    
+     do i=1, ntimes
+       fi = float(i)
+       t = fi * deltat
+       
+       a = fj * pi / 180.0
+
+     
+       
+     x(i) = u * t * cos(a)
+     y(i) = u * t * sin(a) - 0.5 * g * t * t
+     if (y(i).LT.0) exit
+
+       
+       write(1,*) x(i), y(i)
+       
+    
+     end do
+       write(1,*) ' '
+ end do
+     
+    close(1)
+    
+ 
+
+  end program outputdata
