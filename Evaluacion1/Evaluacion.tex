@@ -1,0 +1,151 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Evaluación}
+\author{Edwin Herrera \\
+Departamento de Fisica \\
+Universidad de Sonora}
+\date{30 de Octubre de 2017}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\section{Introducción}
+El examen consistió en tres problemas, en cada uno de ellos nos proporcionaban un problema ejemplo, el cual teniamos que analizar y ver como funcionaba y de ahi tener una base para desarrollar el verdadero problema.
+
+\subsection{Problema 1}
+
+En el problema 1 nos daban un codigo de ejemplo que srive para calcular la superficie de un cilindro.
+Se tenia que modificar para calcular el area y la superficie de una esfera. El codigo resultante fue esta:
+\begin{verbatim}
+program sphere
+
+! Calculate the surface area of a cylinder.
+!
+! Declare variables and constants.
+! constants=pi
+! variables=radius squared and height
+
+  implicit none
+
+! Require all variables to be explicitly declared
+
+  integer :: ierr
+  character(1) :: yn
+  real :: radius, area, volume
+  real, parameter :: pi = 3.141592653589793
+
+  interactive_loop: do
+
+!   Prompt the user for radius
+!   and read them.
+
+    write (*,*) 'Enter radius.'
+    read (*,*,iostat=ierr) radius
+
+!   If radius  could not be read from input,
+!   then cycle through the loop.
+
+    if (ierr /= 0) then
+      write(*,*) 'Error, invalid input.'
+      cycle interactive_loop
+    end if
+
+!   Compute area.  The ** means "raise to a power."
+
+    area = 4 * pi * (radius ** 2) 
+    volume = (4 * pi * (radius ** 3) / 3)
+    
+
+!   Write the input variable (radius)
+!   and output (area and volume) to the screen.
+
+    write (*,'(1x,a7,f6.2,5x,a7,f8.2,5x,a5,f8.2)') &
+      'radius=',radius,'area=',area, 'volume=',volume
+
+    yn = ' '
+    yn_loop: do
+      write(*,*) 'Perform another calculation? y[n]'
+      read(*,'(a1)') yn
+      if (yn=='y' .or. yn=='Y') exit yn_loop
+      if (yn=='n' .or. yn=='N' .or. yn==' ') exit interactive_loop
+    end do yn_loop
+
+  end do interactive_loop
+
+end program sphere
+\end{verbatim}
+
+\subsection{Problema 2}
+En el segundo problema nos proporcionaban un codigo para calcular una sumatoria, igual lo tenemos que analizar y entender el codigo para de ahi hacer otro que pueda calucar la media aritmetica y media armonica.
+Este es el codigo resultante:
+\begin{verbatim}
+program summation
+implicit none
+integer :: j
+real :: mean, a, i, mean2
+
+print*, "This program performs Arithmetic and Harmonic means. Enter 0 to stop."
+open(unit=10, file="MeanData.DAT")
+mean2 = 0
+mean = 0
+i=0
+  
+do
+ print*, "Add:"
+ read*, a
+ if (a == 0) then
+  exit
+   else
+   
+mean = ( mean + a )   
+i = i + 1
+
+mean2 = mean2 + (1/a)
+
+end if
+
+end do
+mean = mean / i
+mean2 = 1 / (mean2 /i)
+ write(10,*) a, i
+
+print*, "Media aritmetica =", mean, "i =", i,"Media armonica =", mean2
+write(10,*) "Media aritmetica =", mean, "Media armonica =", mean2
+close(10)
+
+end program
+\end{verbatim}
+\begin{verbatim}
+El programa asi funciona:  This program performs Arithmetic and Harmonic means.
+Enter 0 to stop.
+ Add:
+1
+ Add:
+2
+ Add:
+3
+ Add:
+4
+ Add:
+5
+
+ Add:
+0
+ Media aritmetica =   3.00000000     i =   5.00000000     
+ Media armonica =   2.18978071    
+\end{verbatim}
+\end{document}

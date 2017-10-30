@@ -1,0 +1,52 @@
+!
+!! serie.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp141.example.com>
+!! 
+!! Started on  Mon Oct 30 14:05:14 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <30-oct-2017 14:10:23 edwin>
+!
+
+program serie
+ implicit none
+integer :: i
+real :: n, suma, it, pi
+
+  pi = 1
+  it = 1
+ write(*,*) 'El valor de pi/4 segun las repeticiones:'
+     do i=1, 50
+     it = it * (-1)
+     n = 2 * i + 1
+     n = 1 / n
+     n = n * (it)
+     pi = pi + n
+	if (i.EQ.10) then
+	write(*,*) ' '
+	write(*,*) '10:', pi
+        end if
+
+	if (i.EQ.20) then
+	write(*,*) ' '
+	write(*,*) '20:', pi
+        end if
+
+	if (i.EQ.30) then
+	write(*,*) ' '
+	write(*,*) '30:', pi
+        end if
+
+	if (i.EQ.40) then
+	write(*,*) ' '
+	write(*,*) '40:', pi
+        end if
+
+	if (i.EQ.50) then
+	write(*,*) ' '
+	write(*,*) '50:', pi
+        end if
+
+end do
+
+end program serie
