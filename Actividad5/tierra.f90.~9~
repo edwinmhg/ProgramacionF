@@ -1,0 +1,31 @@
+!
+!! tierra.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp157.example.com>
+!! 
+!! Started on  Mon Nov 13 11:11:44 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <13-nov-2017 12:06:11 edwin>
+!
+  !Declaramos variables
+program begin
+
+  implicit none
+  double precision :: a, fi
+  double precision, parameter :: D=1.496d8, t=365.26d0         
+  real, parameter :: pi=3.1416d0
+  integer :: i
+  double precision, dimension(1000) :: x, y
+  
+  a = a * pi / 180
+  
+  !Calculamos la posicion.
+  do i=1, 360, 1
+     fi = float(i)
+     x(i) = D * dcos(fi)
+     y(i) = D * dsin(fi)
+
+  end do
+
+
+  end program

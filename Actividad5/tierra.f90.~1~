@@ -1,0 +1,26 @@
+!
+!! tierra.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp157.example.com>
+!! 
+!! Started on  Mon Nov 13 11:11:44 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <13-nov-2017 11:36:03 edwin>
+!
+  !Declaramos variables
+  program begin
+  double precision, parameter :: D=149600000, T=365.26          
+  real, parameter :: pi=3.1416
+  real :: 
+  !Calculamos la circunferencia (trayectoria de la tierra)
+  C = 2 * pi * (D/2)
+  w = 2 * pi / T
+  do i=1,T
+     t=float(i)
+     teta= 2 * pi * t /T
+     
+
+
+
+
+  end program

@@ -1,0 +1,79 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{graphicx}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  
+\fi
+
+% used in maketitle
+\title{Actividad 5}
+\author{Edwin Herrera\\
+Departamento de Fisica \\
+Universidad de Sonora}
+\date{13 de Noviembre de 2017}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\clearpage
+\section{Sistema Sol-Tierra}
+La traslación de la Tierra es el movimiento de este planeta alrededor del Sol, que es la estrella central del sistema solar. La Tierra describe a su alrededor como una órbita elíptica.
+
+Si se toma como referencia la específica posición de una estrella, la Tierra realiza una vuelta completa en un año sidéreo, cuya duración es de 365 días, 5 horas, 45 minutos y 46 segundos. El año sidéreo es de poca importancia práctica. Para las actividades terrestres es más importante la medición del tiempo según las estaciones.
+
+\subsection{Trabajo}
+En este trabajo tuvimos que hacer un modelo Sol-Tierra en el cual la orbita era una circunferencia. Teniamos que encontrar la posicion en formas polares para dar el resultado en coordenadas cartesianas.
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{Circunferencia.png}
+  \caption{Grafica de posiciones de la tierraa}
+  \label{fig:Grafica}
+\end{figure}
+
+EL codigo que utilicé para programar en Fortran 90 fue:
+\begin{verbatim}
+program begin
+
+  implicit none
+  double precision :: fi
+  double precision, parameter :: r=1.496d8, pi=3.1416d0  
+  integer :: i
+  integer, parameter :: ntimes = 360
+  double precision, dimension(1000) :: x, y
+  
+  
+ 
+  open (unit=1, file ='datos.dat', status = 'unknown')
+  
+  do i = 1, ntimes, 1
+     fi = dble(i)
+
+!Convertimos el angulo a radianes.
+     fi = fi * pi / 180d0
+    
+!Calculamos la posicion.
+
+     x(i) = r * dcos(fi)      
+     y(i) = r * dsin(fi) 
+
+     write (1,*) x(i), y(i)
+     write (1,*) ' '
+     
+  end do
+  
+  close (unit=1)
+  
+  end program
+\end{verbatim}
+
+\end{document}
