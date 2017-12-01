@@ -1,0 +1,55 @@
+!
+!! luna.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp156.example.com>
+!! 
+!! Started on  Thu Nov 23 17:17:10 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <23-nov-2017 18:50:04 edwin>
+!
+
+
+subroutine sistema(theta1,theta2,px,py)
+  double precision, intent(in) :: theta1, theta2
+  double precision, intent(out) :: px,py
+end subroutine sistema
+
+
+program begin
+
+  implicit none
+  double precision :: fi, fj, fk, theta1, theta2, px, py
+  double precision, parameter :: R1=1.496d8, pi=3.1416d0, R2=(R1/10)
+  integer :: i, j, k
+  integer, parameter :: t_sol = 360, t_luna = 28
+  double precision, dimension(1000) :: x, y
+  
+   open (unit=1, file ='datos.dat', status = 'unknown')
+
+call sistema(theta1,theta2,px,py)
+
+do j=1, t_luna, 1
+   fj = dble(i)
+   theta1 = 0 + fj
+   
+   x(j)= R2 * dcos(theta1)
+   y(j)= R2 * dsin(theta1)
+   
+end do
+
+do k=1, t_sol,1
+   fk = dble(k)
+   theta2 = 0 +fk
+
+   x(i) = R1 * dcos(fk)
+   y(i) = R2 * dsin(fk)
+
+end do
+        print*,"dtheta1,dtheta2",theta1,theta2
+
+     write (1,*) x(j), y(j), x(k), y(k)
+     write (1,*) ' '
+  
+  close (unit=1)
+  
+  end program
