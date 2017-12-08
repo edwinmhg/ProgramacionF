@@ -1,0 +1,67 @@
+!
+!! Trabajo3.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp163.example.com>
+!! 
+!! Started on  Fri Dec  1 12:05:18 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <01-dic-2017 12:20:03 edwin>
+!
+
+program taylor
+
+    implicit none                  
+    real (kind=8) :: x, sin_true, y, rd
+    real (kind=8), external :: sintaylor
+    real, parameter :: pi=3.1416
+    integer :: i, n
+    rd = pi / 180
+    
+    n = 15              ! number of terms to use
+    open (unit=1, file='Sin.dat', status='unknown')
+    
+    sin_true = sin(x)
+    
+    do i= -3, 3
+       
+     x = float(i)
+     y = sintaylor(x,n)   ! uses function below
+   
+    print *, "x = ",x
+    print *, "sin_true  = ",sin_true
+    print *, "sintaylor = ",y
+    print *, "error     = ",y - sin_true
+    
+    write (1,*) x,y
+    write (1,*) ' '
+    end do
+    close (unit=1)
+end program taylor
+
+!==========================
+function sintaylor(x,n)
+!==========================
+    implicit none
+
+    ! function arguments:
+    real (kind=8), intent(in) :: x
+    integer, intent(in) :: n
+    real (kind=8) :: sintaylor
+
+    ! local variables:
+    real (kind=8) :: term, partial_sum
+    integer :: j
+
+    term = 1.
+    partial_sum = term
+
+    do j=1,n
+        ! j'th term is  x**j / j!  which is the previous term times x/j:
+        term = term*x/j   
+        ! add this term to the partial sum:
+        partial_sum = partial_sum + term   
+        end do
+     sintaylor = partial_sum  ! this is the value returned
+end function sintaylor
+
+! --------  End -------------

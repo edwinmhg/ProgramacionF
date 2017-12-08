@@ -1,0 +1,164 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{graphicx}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  
+\fi
+
+% used in maketitle
+\title{Evaluación 2}
+\author{Edwin Herrera\\
+Universidad de Sonora\\
+Departamento de Física}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+
+\maketitle
+\clearpage
+\section{Primera actividad}
+1.- Se proporciona el siguiente código, que utiliza una función en Fortran 90 para la Serie de Maclaurin function exptaylor(x,n)para aproximar la función exponencial f(x) = exp(x), en el punto x=1, utilizando n=20 términos de la serie.
+
+\begin{verbatim}
+! ----------- Begin ------------
+
+!taylor.f90
+
+program taylor
+
+    implicit none                  
+real (kind=8) :: x, exp_true, y
+    real (kind=8), external :: exptaylor
+    integer :: n
+
+    n = 20               ! number of terms to use
+    x = 1.0
+    exp_true = exp(x)
+    y = exptaylor(x,n)   ! uses function below
+    print *, "x = ",x
+    print *, "exp_true  = ",exp_true
+    print *, "exptaylor = ",y
+    print *, "error     = ",y - exp_true
+
+end program taylor
+
+!==========================
+function exptaylor(x,n)
+!==========================
+    implicit none
+
+    ! function arguments:
+    real (kind=8), intent(in) :: x
+    integer, intent(in) :: n
+    real (kind=8) :: exptaylor
+
+    ! local variables:
+    real (kind=8) :: term, partial_sum
+    integer :: j
+
+    term = 1.
+    partial_sum = term
+
+    do j=1,n
+        ! j'th term is  x**j / j!  which is the previous term times x/j:
+        term = term*x/j   
+        ! add this term to the partial sum:
+        partial_sum = partial_sum + term   
+        enddo
+     exptaylor = partial_sum  ! this is the value returned
+end function exptaylor
+
+! --------  End -------------
+
+\end{verbatim}
+
+\subsection{Explicación}
+En el programa se utilizó una serie de Maclaurin que es la de aproximar el exponencial.
+Los resultados que dió al correr el programa fueron los siguientes:
+\begin{verbatim}
+ x =    1.0000000000000000     
+ exp_true  =    2.7182818284590451     
+ exptaylor =    2.7182818284590455     
+ error     =    4.4408920985006262E-016
+
+Al analizarlo nos damos cuenta que la función se aproximo en el punto x=1 y n=20 
+terminos en la serie.
+
+exp_true Es un valor de la funcion exponencial y exptaylor es el valor de la
+funcion que calculamos en n=20, y el error es la resta de exp_true menos 
+exptaylor. Es el error que nos da porque no se aproximo al infinito.
+\end{verbatim}
+
+\section{Segunda actividad}
+
+Se nos pidio hacer una aproximacion de la funcion exponencial de McLaurin
+
+EL codigo fue el siguiente: 
+
+\begin{verbatim}
+  subroutine exptaylor (n, j, fi, fj, exptay)
+	integer, intent (in)      :: n
+	real, intent (in) :: fi
+	integer :: j
+	real, dimension (100), intent(out) :: exptay
+	real :: fj, term, partial_sum
+	
+	
+	
+	term = 1
+	partial_sum = term
+	do j = 1, n
+	 fj = dble(j)
+	 term = term * fi / fj
+	 partial_sum = partial_sum + term
+	 exptay(j) = partial_sum
+	enddo
+
+	 
+end subroutine exptaylor
+	 
+
+program expty
+	real, dimension (15) :: f
+	integer :: i, j, n
+	real, dimension (100)   :: x
+	real, dimension (100) :: exptay
+        real, dimension (100) :: funcion
+	real :: fi, fj, term, partial_sum
+
+     open (1, file = 'exp.dat', status = 'unknown')
+	
+	do n=1, 15, 2
+	do i=0, 100, 1
+	  fi = dble(i)
+	  fi = fi / 10
+	call exptaylor (n, j, fi, fj, exptay)
+	funcion(n) = exptay(n)
+	write (1,*) fi, funcion(n)
+
+	end do
+	write (1,*) ' '
+	end do
+     close (1)
+
+end program expty
+\end{verbatim}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{exponencial.png}
+  \caption{Grafica de la aproximacion de la funcion exponencial}
+  \label{fig:Grafica}
+\end{figure}
+
+
+\end{document}

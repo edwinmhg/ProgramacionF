@@ -1,0 +1,61 @@
+!
+!! Trabajo2.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp163.example.com>
+!! 
+!! Started on  Fri Dec  1 11:56:31 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <01-dic-2017 12:53:18 edwin>
+!
+
+! ----------- Begin ------------
+
+!taylor.f90
+
+program taylor
+
+    implicit none                  
+    real (kind=8) :: x, exp_true, y
+    real (kind=8), external :: exptaylor
+    integer :: npts, n, i
+    npts = 100
+    n = 15               ! number of terms to use
+
+    do i= 0,npts
+    x = float(i)
+    call funcion(x,npts,y,n)
+    exp_true = exp(x)
+    print "(f10.3,3d19.10,i6)", x, exp_true,y
+    end do
+    
+    print *, "x = ",x
+    print *, "exp_true  = ", exp_true
+    print *, "exptaylor = ", y
+
+end program taylor
+
+subroutine funcion(x,npts,y,n)
+ implicit none
+    real (kind=8), intent(in) :: x
+    integer, intent(in) :: npts
+    real (kind=8), intent(out) :: y
+    integer, intent(out) :: n
+
+    ! local variables:
+    real (kind=8) :: term, partial_sum
+    integer :: i
+
+    term = 1.
+    partial_sum = term
+
+    do i=1,npts
+        ! j'th term is  x**j / j!  which is the previous term times x/j:
+        term = term*x/i  
+        ! add this term to the partial sum:
+        partial_sum = partial_sum + term   
+        end do
+     n= i
+     y = partial_sum  ! this is the value returned
+end subroutine funcion
+
+! --------  End -------------

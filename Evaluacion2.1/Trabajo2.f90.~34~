@@ -1,0 +1,63 @@
+!
+!! Trabajo2.f90
+!! 
+!! Made by (Edwin Herrera Gallegos)
+!! Login   <edwin@ltsp153.example.com>
+!! 
+!! Started on  Thu Dec  7 16:27:27 2017 Edwin Herrera Gallegos
+!! Last update Time-stamp: <07-dic-2017 17:05:24 edwin>
+!
+
+  
+program exponencial
+        real, dimension(15) :: f
+	integer :: i, n
+	real, dimension (100)   :: x
+	real, dimension (100) :: expmc
+	real, dimension (100) :: funcion
+	real :: fi, fj, term, psum
+
+     open (unit=1, file = 'exp.dat', status = 'unknown')
+	
+	do n=1, 15, 2
+
+          do i=0, 100, 1
+	  fi = float(i)
+          fi = fi / 10
+   
+          call exp (n, k, a, b, expmc)
+          
+          funcion(j) = expmc(j)
+          
+	  write (1,*) fi, funcion(j)
+
+          end do
+
+	write (1,*) ' '
+
+        end do
+
+     close (unit=1)
+
+end program exponencial 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+subroutine exp(n, k, a, b, expmc)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        integer, intent(in) :: n
+        integer :: k
+	real, intent (in) :: a
+	real, intent(out), dimension(100) :: expmc
+        real :: b, term, psum
+	
+	term = 1
+        psum = term
+ 
+	do k = 1, n
+	 b = float(k)
+	 term = term * a / b
+	 psum = psum + term
+	 expmc(k) = psum
+	end do
+
+end subroutine exp
